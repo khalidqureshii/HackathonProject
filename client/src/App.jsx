@@ -4,6 +4,10 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Logout from "./pages/Logout";
 import Home from "./pages/Home";
+import HomePage from "./HomePage";
+import PreHome from "./pages/PreHome";
+import Header from "./components/Header";
+import DummyHeader from "./components/DummyHeader";
 import Profile from "./pages/Profile";
 import PreHome from "./pages/PreHome";
 import Header from "./components/Header";
@@ -59,6 +63,15 @@ function App() {
             }
           />
           <Route
+            path="/homepage"
+            element={
+              <>
+                <Header />
+                <HomePage />
+              </>
+            }
+          />
+          <Route
             path="/profile"
             element={
               <>
@@ -67,6 +80,9 @@ function App() {
               </>
             }
           />
+
+          {/* New Addition */}
+          {/* <Route path='/connect' element={<><Header /><Connect /></>} /> */}
         </Routes>
       </BrowserRouter>
     </>

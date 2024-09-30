@@ -17,7 +17,7 @@ function Login() {
     
     React.useEffect(() => {
         if (currToken) {
-            navigate("/"); 
+            navigate("/home"); 
         }
     }, [currToken, navigate]);
 
@@ -46,7 +46,7 @@ function Login() {
             toast("Successfully Logged in");
             const resp_data = await response.json();
             await storeTokenInLS(resp_data.token);
-            navigate("/");
+            navigate("/home");
         }
         else {
             const res_data = await response.json();
