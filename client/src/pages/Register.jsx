@@ -21,6 +21,8 @@ function Register() {
         industry: "",
         userType: "Alumni", // Default selected value
         match: true,
+        bio: "",
+        bioString: ""
     });
     const [isLoading, setLoading] = useState(false);
 
@@ -60,6 +62,10 @@ function Register() {
             toast.error("Phone number must be exactly 10 digits.");
             return;
         }
+
+        if (user.userType === 'Student') user.bio = "Currently Studying at ";
+        else user.bio = "Currently Working at ";
+        user.bio = user.bio + user.bioString;
 
         setLoading(true);
         const response = await fetch(LINK + "api/auth/register", {
@@ -101,29 +107,8 @@ function Register() {
                                 {/* New Location Input */}
                                 <InputEntry changeFunction={updateUser} name="location" text="Location" placeholder="Enter Your Location" value={user.location} />
 
-                                {/* New Industry Dropdown */}
-                                <div className="mt-1">
-                                    <label className="block text-white text-[1.25rem] leading-[1.75rem] mb-2" htmlFor="industry">
-                                        Industry
-                                    </label>
-                                    <select
-                                        name="industry"
-                                        id="industry"
-                                        value={user.industry}
-                                        onChange={updateUser}
-                                        className="w-full px-4 py-2 border border-gray-300 bg-gray-100 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    >
-                                        <option value="" disabled>Select Your Industry</option>
-                                        <option value="Technology">Technology</option>
-                                        <option value="Healthcare">Healthcare</option>
-                                        <option value="Finance">Finance</option>
-                                        <option value="Education">Education</option>
-                                        <option value="Others">Others</option>
-                                    </select>
-                                </div>
-
                                 {/* New Radio Buttons */}
-                                <div className="mt-8">
+                                <div className="mt-8 flex flex-col items-center justify-center">
                                     <label className="block text-white text-[1.25rem] leading-[1.75rem] mb-2">
                                         User Type
                                     </label>
@@ -151,6 +136,34 @@ function Register() {
                                             Student
                                         </label>
                                     </div>
+
+                                <div className="mt-8">
+                                    {user.userType === "Student" ? (<InputEntry changeFunction={updateUser} name="bioString" text="Currently Studying at" placeholder="Enter College Name" value={user.bioString} />):
+                                    (<InputEntry changeFunction={updateUser} name="bioString" text="Currently Working at" placeholder="Enter Company Name" value={user.bioString} />)}
+                                </div>
+
+                                {/* New Industry Dropdown */}
+                                <div className="mt-1">
+                                    <label className="block text-white text-[1.25rem] leading-[1.75rem] mb-2" htmlFor="industry">
+                                        Industry
+                                    </label>
+                                    <select
+                                        name="industry"
+                                        id="industry"
+                                        value={user.industry}
+                                        onChange={updateUser}
+                                        className="w-full px-4 py-2 border border-gray-300 bg-gray-100 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    >
+                                        <option value="" disabled>Select Your Industry</option>
+                                        <option value="Technology">Technology</option>
+                                        <option value="Healthcare">Healthcare</option>
+                                        <option value="Finance">Finance</option>
+                                        <option value="Education">Education</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </div>
+
+                                
                                 </div>
 
                                 <button type="submit" className="w-32 h-12 customButton mt-8" onClick={storeData}>Submit</button>

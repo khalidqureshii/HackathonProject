@@ -8,6 +8,8 @@ import HomePage from "./pages/HomePage";
 import PreHome from "./pages/PreHome";
 import Header from "./components/Header";
 import DummyHeader from "./components/DummyHeader";
+import Connect from "./pages/Connect";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -68,9 +70,25 @@ function App() {
               </>
             }
           />
+          <Route
+            path="/profile"
+            element={
+              <>
+                <Header />
+                <Profile />
+              </>
+            }
+          />
 
-          {/* New Addition */}
-          {/* <Route path='/connect' element={<><Header /><Connect /></>} /> */}
+          <Route
+            path="/connect"
+            element={
+              <>
+                <Header />
+                <Connect />
+              </>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>
