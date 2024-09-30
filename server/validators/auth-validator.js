@@ -49,6 +49,11 @@ const signupSchema = z.object({
     .trim()
     .min(3, { message: "Minimum 3 characters required for user type" })
     .max(255, { message: "Max limit of 255 characters in user type" }),
+
+  bio:z.string({required_error: "Currently Working/Studying information is Required"})
+  .trim()
+  .min(3, { message: "Minimum 2 characters required for Company/College" })
+  .max(255, { message: "Max limit of 255 characters in Company/College" }),
 });
 
 export default signupSchema;

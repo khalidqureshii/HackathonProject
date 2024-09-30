@@ -4,10 +4,11 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Logout from './pages/Logout'
 import Home from './pages/Home'
-import HomePage from './HomePage'
+import HomePage from './pages/HomePage'
 import PreHome from './pages/PreHome'
 import Header from './components/Header'
 import DummyHeader from './components/DummyHeader'
+import Connect from './pages/Connect'
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
           <Route path='/homepage' element={<><Header /><HomePage /></>} />
 
           {/* New Addition */}
-          {/* <Route path='/connect' element={<><Header /><Connect /></>} /> */}
+          <Route path='/connect' element={<><Header /><Connect /></>} />
         </Routes>
       </BrowserRouter>
     </>

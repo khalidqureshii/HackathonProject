@@ -48,12 +48,12 @@ const login = async (req, res)=> {
 
 const register = async (req, res)=> {
     try{
-        const {username, phone, email, password, industry, location, interests, userType} = req.body;
+        const {username, phone, email, password, industry, location, interests, userType, bio} = req.body;
         const userExists = await User.findOne({username: username});
         if (userExists) {
             return res.status(400).json({msg: "User Already Exists"});
         }
-        const newUser = await User.create({username, phone, email, password, industry, location, interests, userType});
+        const newUser = await User.create({username, phone, email, password, industry, location, interests, userType, bio});
         res.status(200).json({msg: "Registration Successful", token: await newUser.generateToken(), userId: newUser._id.toString()});
     }
     catch (err) {
@@ -87,4 +87,15 @@ const user = async (req, res) => {
     }
 }
 
-export {login, register, home, user};
+const getProfiles = async(req, res) => {
+    try {
+        const profiles = await User.find().select({location:1, bio:1, username:1, industry:1, userType: 1})
+        res.status(200).json({msg: "Successful", allProfiles: profiles});
+    }
+    catch (err) {
+        console.log("Couldn't get shit");
+        return res.status(404).message("Not found");
+    }
+}
+
+export {login, register, home, user, getProfiles};

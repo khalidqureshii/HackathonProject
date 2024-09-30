@@ -28,5 +28,6 @@ router.route("/login").post(authControllers.login);
 router.route("/register").post(authControllers.register);
 router.route("/");
 router.route("/user").get(authMiddleware, authControllers.user);
+router.route("/getProfiles").get(authControllers.getProfiles);
 
 export default router;
