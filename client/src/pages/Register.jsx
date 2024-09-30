@@ -26,7 +26,7 @@ function Register() {
 
     React.useEffect(() => {
         if (currToken) {
-            navigate("/");
+            navigate("/home");
         }
     }, [currToken, navigate]);
 
