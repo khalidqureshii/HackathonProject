@@ -191,6 +191,7 @@ import cors from "cors";
 import profile_Router from "./router/profile-router.js";
 import postRoutes from "./router/post-router.js";
 import path from "path";
+import filterRouter from "./router/filter-router.js"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -204,6 +205,7 @@ app.use(express.json());
 app.use("/api/profile", profile_Router);
 app.use("/api/auth", router);
 app.use("/api/posts", postRoutes);
+app.use("/api/filter", filterRouter);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(errorMiddleware);
 
