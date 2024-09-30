@@ -35,8 +35,9 @@ const signupSchema = z.object({
   location: z
     .string({ required_error: "Location is required" })
     .trim()
-    .min(2, { message: "Minimum 2 characters required for location" })
-    .max(255, { message: "Max limit of 255 characters in location" }),
+    .email({ message: "Invalid email address" })
+    .min(3, { message: "Minimum 3 Characters Needed in email" })
+    .max(255, { message: "Max limit of 255 Characters in email" }),
 
   interests: z
     .string({ required_error: "Interests are required" })
@@ -49,6 +50,11 @@ const signupSchema = z.object({
     .trim()
     .min(3, { message: "Minimum 3 characters required for user type" })
     .max(255, { message: "Max limit of 255 characters in user type" }),
+
+  bio:z.string({required_error: "Currently Working/Studying information is Required"})
+  .trim()
+  .min(3, { message: "Minimum 2 characters required for Company/College" })
+  .max(255, { message: "Max limit of 255 characters in Company/College" }),
 });
 
 export default signupSchema;
@@ -77,4 +83,4 @@ export default signupSchema;
 //     .max(20, {message: "Password should be less than 20 Characters" }),
 // });
 
-// export default signupSchema;
+export default signupSchema;

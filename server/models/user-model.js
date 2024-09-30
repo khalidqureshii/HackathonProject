@@ -2,25 +2,6 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-// const userSchema = new mongoose.Schema( {
-//     username: {
-//         type:String,
-//         require:true
-//     },
-//     phone: {
-//         type:String,
-//         require:true
-//     },
-//     email: {
-//         type:String,
-//         require:true
-//     },
-//     password: {
-//         type:String,
-//         require:true
-//     },
-// });
-
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -51,6 +32,10 @@ const userSchema = new mongoose.Schema({
     require: true,
   },
   userType: {
+    type: String,
+    required: true,
+  },
+  bio: {
     type: String,
     required: true,
   },
@@ -131,6 +116,7 @@ userSchema.methods.generateToken = async function () {
       {
         userId: this._id.toString(),
         email: this.email,
+        isAdmin: this.isAdmin,
       },
       process.env.JWT_GENERATING_STRING,
       {
