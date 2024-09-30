@@ -9,6 +9,7 @@ import Header from './components/Header'
 import DummyHeader from './components/DummyHeader'
 
 
+
 function App() {
   return (
     <>
@@ -19,6 +20,9 @@ function App() {
           <Route path='/login' element={<><DummyHeader /><Login /></>} />
           <Route path='/register' element={<><DummyHeader /><Register /></>} />
           <Route path='/logout' element={<><Header /><Logout /></>} />
+
+          {/* New Addition */}
+          {/* <Route path='/connect' element={<><Header /><Connect /></>} /> */}
         </Routes>
       </BrowserRouter>
     </>

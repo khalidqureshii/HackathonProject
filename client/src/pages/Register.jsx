@@ -70,6 +70,8 @@ function Register() {
 
             <h2 className="text-3xl mt-7 mb-4">Already have an Account?</h2>
             <button className="customButton h-12 w-32" onClick={()=>navigate("/login")}>Login</button>
+
+            
         </div>
         </>)}
         </>}

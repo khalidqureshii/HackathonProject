@@ -2,27 +2,66 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken";
 
-const userSchema = new mongoose.Schema( {
+// const userSchema = new mongoose.Schema( {
+//     username: {
+//         type:String,
+//         require:true
+//     },
+//     phone: {
+//         type:String,
+//         require:true
+//     },
+//     email: {
+//         type:String,
+//         require:true
+//     },
+//     password: {
+//         type:String,
+//         require:true
+//     },
+// });
+
+const userSchema = new mongoose.Schema({
     username: {
-        type:String,
-        require:true
+      type: String,
+      require: true,
     },
     phone: {
-        type:String,
-        require:true
+      type: String,
+      require: true,
     },
     email: {
-        type:String,
-        require:true
+      type: String,
+      require: true,
     },
     password: {
-        type:String,
-        require:true
+      type: String,
+      require: true,
     },
-    isAdmin: {
-        type:Boolean,
-        default:false
-    }
+    industry: {
+      type: String,
+      require: true,
+    },
+    location: {
+      type: String,
+      require: true,
+    },
+    interests: {
+      type: String,
+      require: true,
+    },
+    userType: {
+      type: String,
+      required: true,
+    },
+    incoming: [{
+      type: String,
+      default: [], 
+    }],
+    connections: [{
+      type: String,
+      default: [],  
+    }],
 });
 
 userSchema.pre("save", async function (next) {
@@ -43,8 +82,7 @@ userSchema.methods.generateToken = async function() {
         return await jwt.sign(
             {
                 userId: this._id.toString(),
-                email: this.email,
-                isAdmin: this.isAdmin
+                email: this.email
             }, 
             process.env.JWT_GENERATING_STRING, 
             {
