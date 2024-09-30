@@ -6,9 +6,12 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        roboto: ['Roboto', 'sans-serif'],  // Adding Roboto font
+      height: {
+        '90vh':'90vh',
       },
+      width: {
+        '90vw':'90vw',
+      }
     },
   },
   plugins: [],

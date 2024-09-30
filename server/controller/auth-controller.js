@@ -48,24 +48,24 @@ const login = async (req, res)=> {
 
 const register = async (req, res)=> {
     try{
-        const {username, phone, email, password} = req.body;
+        const {username, phone, email, password, industry, location, interests, userType} = req.body;
         const userExists = await User.findOne({username: username});
         if (userExists) {
             return res.status(400).json({msg: "User Already Exists"});
         }
-        const newUser = await User.create({username, phone, email, password});
+        const newUser = await User.create({username, phone, email, password, industry, location, interests, userType});
         res.status(200).json({msg: "Registration Successful", token: await newUser.generateToken(), userId: newUser._id.toString()});
     }
     catch (err) {
         const status = 404;
         const message = "User Already Exists";
-        const extraDetails = err.errors[0].message.toString();
+        const extraDetails = "";
         const errorDetails = {
             message,
             status,
             extraDetails
         }
-        next(errorDetails);
+        console.log(errorDetails);
     }
 };
 
