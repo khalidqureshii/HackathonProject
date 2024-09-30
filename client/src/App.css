@@ -1,14 +1,13 @@
   .card {
     display: flex;
-    flex-direction: column; /* Stack content vertically */
-    align-items: center; /* Center content */
-    width: 60%; /* Set card width */
-    margin: 0 auto; /* Center the card on the page */
+    flex-direction: column; 
+    align-items: center;
+    width: 60%; 
+    margin: 0 auto; 
   }
   
   img {
-    max-width: 70%; /* Ensures the image doesn’t exceed the card width */
-    height: auto; /* Maintains the aspect ratio */
-    /* object-fit: contain;  */
+    max-width: 70%; 
+    height: auto; 
   }
   

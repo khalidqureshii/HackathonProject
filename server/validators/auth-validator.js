@@ -82,5 +82,3 @@ export default signupSchema;
 //     .min(6, {message: "Password should be more than 6 Characters" })
 //     .max(20, {message: "Password should be less than 20 Characters" }),
 // });
-
-export default signupSchema;

@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { CgClose } from "react-icons/cg";
 import Loader from "./Loader";
 import useAuth from "../store/Auth";
-// Ensure this import is correct
 
 const AddEducationPage = ({ setEducation, education, setOpen }) => {
   const institutionRef = useRef();
@@ -11,7 +10,7 @@ const AddEducationPage = ({ setEducation, education, setOpen }) => {
   const endYearRef = useRef();
   const { token } = useAuth();
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(""); // State for error message
+  const [errorMessage, setErrorMessage] = useState(""); 
 
   const appendEducation = async (e) => {
     e.preventDefault();
@@ -24,7 +23,7 @@ const AddEducationPage = ({ setEducation, education, setOpen }) => {
     };
 
     setLoading(true);
-    setErrorMessage(""); // Reset error message
+    setErrorMessage(""); 
     console.log("JHAkan-> " + token);
     try {
       const response = await fetch(
@@ -45,8 +44,6 @@ const AddEducationPage = ({ setEducation, education, setOpen }) => {
       }
 
       const result = await response.json();
-      // console.log("result->" + result.msg);
-      // const result = await response.json();
       setEducation(result.education);
 
       institutionRef.current.value = "";
@@ -55,7 +52,7 @@ const AddEducationPage = ({ setEducation, education, setOpen }) => {
       endYearRef.current.value = "";
       setOpen(false);
     } catch (error) {
-      setErrorMessage(error.message); // Set the error message state
+      setErrorMessage(error.message); 
     } finally {
       setLoading(false);
     }
@@ -159,10 +156,8 @@ const AddEducationPage = ({ setEducation, education, setOpen }) => {
         </button>
       </form>
 
-      {/* Display Loader */}
       {loading && <Loader />}
 
-      {/* Display Error Message */}
       {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>}
     </div>
   );

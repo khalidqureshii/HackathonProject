@@ -43,43 +43,4 @@ function Connect(){
   );
 }
 
-
-// const Connect = () => {
-//   return (
-//     <div className='flex justify-center items-center mt-9'>
-//       <div className='flex flex-wrap justify-center items-center gap-5 lg:mx-24 max-w-7xl'>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-        
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-        
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-        
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//         <PersonCard name="Khalid Qureshi" bio="Student at Thadomal Shahani" loc="Mumbai"/>
-//       </div>
-//     </div>
-//   )
-// }
-
 export default Connect

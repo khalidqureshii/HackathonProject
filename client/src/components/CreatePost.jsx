@@ -11,7 +11,6 @@ const CreatePost = () => {
     isDonation: false,
   });
 
-  // Handle text input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -20,7 +19,6 @@ const CreatePost = () => {
     });
   };
 
-  // Handle image file input change
   const handleImageChange = (e) => {
     setFormData({
       ...formData,
@@ -28,7 +26,6 @@ const CreatePost = () => {
     });
   };
 
-  // Handle checkbox for donation
   const handleCheckboxChange = (e) => {
     setFormData({
       ...formData,
@@ -36,27 +33,23 @@ const CreatePost = () => {
     });
   };
 
-  // Handle form submission with fetch API
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Create a FormData object to handle file upload and other fields
     const postData = new FormData();
     postData.append("title", formData.title);
     postData.append("description", formData.description);
     postData.append("isDonation", formData.isDonation);
     if (formData.image) {
-      postData.append("image", formData.image); // Adding the image file to FormData
+      postData.append("image", formData.image); 
     }
 
     try {
-      // Using fetch API to POST data to the backend
       const response = await fetch("http://localhost:5000/api/posts/create", {
         method: "POST",
-        body: postData, // Send FormData
+        body: postData, 
       });
 
-      // Check if the response is successful
       const result = await response.json();
 
       if (response.ok) {

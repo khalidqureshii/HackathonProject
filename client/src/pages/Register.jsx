@@ -19,7 +19,7 @@ function Register() {
         confirmPassword: "",
         location: "",
         industry: "",
-        userType: "Alumni", // Default selected value
+        userType: "Alumni", 
         match: true,
         bio: "",
         bioString: ""
@@ -50,14 +50,12 @@ function Register() {
             return;
         }
 
-        // Email validation
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(user.email)) {
             toast.error("Please enter a valid email address.");
             return;
         }
 
-        // Phone number validation
         if (user.phone.length !== 10 || isNaN(user.phone)) {
             toast.error("Phone number must be exactly 10 digits.");
             return;
@@ -103,11 +101,9 @@ function Register() {
                                 <InputEntry changeFunction={updateUser} name="phone" text="Phone Number" placeholder="Enter Your Phone Number" value={user.phone} />
                                 <InputEntryPassword changeFunction={updateUser} name="password" text="Password" placeholder="Enter Your Password" value={user.password} />
                                 <InputEntryPassword changeFunction={updateUser} name="confirmPassword" text="Confirm Password" placeholder="Re-Enter Your Password" value={user.confirmPassword} />
-                                
-                                {/* New Location Input */}
+
                                 <InputEntry changeFunction={updateUser} name="location" text="Location" placeholder="Enter Your Location" value={user.location} />
 
-                                {/* New Radio Buttons */}
                                 <div className="mt-8 flex flex-col items-center justify-center">
                                     <label className="block text-white text-[1.25rem] leading-[1.75rem] mb-2">
                                         User Type
@@ -142,7 +138,6 @@ function Register() {
                                     (<InputEntry changeFunction={updateUser} name="bioString" text="Currently Working at" placeholder="Enter Company Name" value={user.bioString} />)}
                                 </div>
 
-                                {/* New Industry Dropdown */}
                                 <div className="mt-1">
                                     <label className="block text-white text-[1.25rem] leading-[1.75rem] mb-2" htmlFor="industry">
                                         Industry

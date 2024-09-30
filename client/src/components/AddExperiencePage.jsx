@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { CgClose } from "react-icons/cg";
-import Loader from "./Loader"; // Ensure this import is correct
-import useAuth from "../store/Auth"; // Ensure this import is correct
+import Loader from "./Loader"; 
+import useAuth from "../store/Auth"; 
 
 const AddExperiencePage = ({ setExperience, experience, setOpen }) => {
   const companyRef = useRef();
@@ -9,9 +9,9 @@ const AddExperiencePage = ({ setExperience, experience, setOpen }) => {
   const typeRef = useRef();
   const startYearRef = useRef();
   const endYearRef = useRef();
-  const { token } = useAuth(); // Assuming you're using a context for auth
+  const { token } = useAuth(); 
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(""); // State for error message
+  const [errorMessage, setErrorMessage] = useState("");
 
   const appendExperience = async (e) => {
     e.preventDefault();
@@ -25,11 +25,11 @@ const AddExperiencePage = ({ setExperience, experience, setOpen }) => {
     };
 
     setLoading(true);
-    setErrorMessage(""); // Reset error message
+    setErrorMessage(""); 
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/profile/experience/add", // Adjust the URL as necessary
+        "http://localhost:5000/api/profile/experience/add",
         {
           method: "POST",
           headers: {
@@ -47,9 +47,8 @@ const AddExperiencePage = ({ setExperience, experience, setOpen }) => {
 
       const result = await response.json();
       console.log("Updated Experience:", result.experience);
-      setExperience(result.experience); // Assuming the response returns updated experience array
+      setExperience(result.experience); 
 
-      // Clear input fields
       companyRef.current.value = "";
       roleRef.current.value = "";
       typeRef.current.value = "";
@@ -57,7 +56,7 @@ const AddExperiencePage = ({ setExperience, experience, setOpen }) => {
       endYearRef.current.value = "";
       setOpen(false);
     } catch (error) {
-      setErrorMessage(error.message); // Set the error message state
+      setErrorMessage(error.message); 
     } finally {
       setLoading(false);
     }
@@ -181,10 +180,7 @@ const AddExperiencePage = ({ setExperience, experience, setOpen }) => {
         </button>
       </form>
 
-      {/* Display Loader */}
       {loading && <Loader />}
-
-      {/* Display Error Message */}
       {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>}
     </div>
   );
