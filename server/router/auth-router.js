@@ -7,8 +7,10 @@ import validateLogin from "../middlewares/login-middleware.js";
 import authMiddleware from "../middlewares/auth-middleware.js";
 const router = express.Router();
 
-router.route("/login").post(validateLogin(loginSchema),authControllers.login);
-router.route("/register").post(validateSignUp(signUpSchema),authControllers.register);
+// router.route("/login").post(validateLogin(loginSchema),authControllers.login);
+// router.route("/register").post(validateSignUp(signUpSchema),authControllers.register);
+router.route("/login").post(authControllers.login);
+router.route("/register").post(authControllers.register);
 router.route("/");
 router.route("/user").get(authMiddleware, authControllers.user);
 
