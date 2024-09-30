@@ -1,5 +1,5 @@
-import React from 'react';
-import CreatePost from './components/CreatePost.jsx';
+import React from "react";
+import CreatePost from "../components/CreatePost.jsx";
 
 function HomePage() {
   return (
