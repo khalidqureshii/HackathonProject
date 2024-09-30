@@ -3,15 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Logout from "./pages/Logout";
-import Home from "./pages/Home";
-import HomePage from "./HomePage";
-import PreHome from "./pages/PreHome";
-import Header from "./components/Header";
-import DummyHeader from "./components/DummyHeader";
+import HomePage from "./pages/HomePage";
 import Profile from "./pages/Profile";
 import PreHome from "./pages/PreHome";
 import Header from "./components/Header";
 import DummyHeader from "./components/DummyHeader";
+import Home from "./pages/Home";
 function App() {
   return (
     <>
