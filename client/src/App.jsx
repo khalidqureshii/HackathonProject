@@ -80,7 +80,6 @@ function App() {
             }
           />
 
-          {/* New Addition */}
           <Route path='/connect' element={<><Header /><Connect /></>} />
         </Routes>
       </BrowserRouter>
