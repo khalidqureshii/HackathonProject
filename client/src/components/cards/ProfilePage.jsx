@@ -71,7 +71,6 @@ function ProfilePage () {
         throw new Error(updateData.message || "Failed to update incoming list");
       }
   
-      // Successfully updated
       console.log("Successfully updated incoming list:", updateData);
     } catch (error) {
       console.error("Error fetching profile data:", error);
