@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage'
 import PreHome from './pages/PreHome'
 import Header from './components/Header'
 import DummyHeader from './components/DummyHeader'
+// import FirstPage from './pages/FirstPage'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path='/register' element={<><DummyHeader /><Register /></>} />
           <Route path='/logout' element={<><Header /><Logout /></>} />
           <Route path='/homepage' element={<><Header /><HomePage /></>} />
+          {/* <Route path='/firstpage' element={<><Header /><FirstPage /></>} /> */}
 
           {/* New Addition */}
           {/* <Route path='/connect' element={<><Header /><Connect /></>} /> */}
