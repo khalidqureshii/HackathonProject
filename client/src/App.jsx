@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import DummyHeader from "./components/DummyHeader";
 import Connect from "./pages/Connect";
 import Profile from "./pages/Profile";
+import ProfilePage from "./components/cards/ProfilePage";
 
 function App() {
   return (
@@ -89,6 +90,10 @@ function App() {
               </>
             }
           />
+           <Route path="/userprofile/:id" element={<>
+                <Header />
+                <ProfilePage />
+              </>} />
         </Routes>
       </BrowserRouter>
     </>
