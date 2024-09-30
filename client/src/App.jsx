@@ -8,8 +8,6 @@ import PreHome from './pages/PreHome'
 import Header from './components/Header'
 import DummyHeader from './components/DummyHeader'
 
-
-
 function App() {
   return (
     <>
@@ -26,7 +24,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
