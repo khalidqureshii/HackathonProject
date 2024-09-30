@@ -4,7 +4,6 @@ export const createPost = async (req, res) => {
     console.log(req.body);
     const { title, description, isDonation } = req.body;
     const imageUrl = req.file ? req.file.path : null;
-
     const newPost = new Post({
       title,
       description,
