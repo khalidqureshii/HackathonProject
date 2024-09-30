@@ -79,21 +79,23 @@ const register = async (req, res) => {
       interests,
       userType,
     });
-    res.status(200).json({
-      msg: "Registration Successful",
-      token: await newUser.generateToken(),
-      userId: newUser._id.toString(),
-    });
+    res
+      .status(200)
+      .json({
+        msg: "Registration Successful",
+        token: await newUser.generateToken(),
+        userId: newUser._id.toString(),
+      });
   } catch (err) {
     const status = 404;
     const message = "User Already Exists";
-    const extraDetails = err.errors[0].message.toString();
+    const extraDetails = "";
     const errorDetails = {
       message,
       status,
       extraDetails,
     };
-    next(errorDetails);
+    console.log(errorDetails);
   }
 };
 
