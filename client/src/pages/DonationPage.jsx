@@ -1,9 +1,12 @@
 // src/DonationForm.js
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import FadeLoader from "react-spinners/ClipLoader";
 
 const DonationPage = () => {
+    const location = useLocation();
+  let { title } = location.state || "Unknown"; 
   const stripe = useStripe();
   const elements = useElements();
   const [amount, setAmount] = useState("");
@@ -68,12 +71,16 @@ const DonationPage = () => {
     }
   };
 
+  console.log(title);
+
   return (
+    <>
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <form
         onSubmit={handleSubmit}
         className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm"
-      >
+        >
+        {(title != "Unknown") ? (<h1 className="text-2xl font-semibold mb-4 text-gray-800">Donation for: {title}</h1>): (<></>)}
         <h2 className="text-2xl font-semibold mb-4 text-gray-800">
           Pay with Card
         </h2>
@@ -139,6 +146,7 @@ const DonationPage = () => {
         {success && <div className="text-green-500 mt-4">{success}</div>}
       </form>
     </div>
+    </>
   );
 };
 

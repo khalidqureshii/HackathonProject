@@ -123,9 +123,10 @@ const Home = () => {
     fetchPosts();
   }, []);
 
-  const handleDonateClick = (post) => {
+  const handleDonateClick = (post, index) => {
     // alert(`Donating for post: ${post.title}`);
-    navigate("/donation");
+    // console.log(post[index].title);
+    navigate("/donation", {state: {title:post[index].title}});
   };
 
   const handleSearch = (e) => {
@@ -158,7 +159,7 @@ const Home = () => {
       {/* Main Content */}
       <div className="mt-0 flex flex-col items-center">
         <div className="flex flex-col items-center w-5/6">
-          {posts.map((post) => (
+          {posts.map((post, index) => (
             <div key={post._id} className="bg-white p-8 rounded-lg shadow-lg w-[55%] mb-3 transition-transform transform hover:scale-105">
               {/* User Information */}
               <div className="flex items-center mb-4">
@@ -183,7 +184,7 @@ const Home = () => {
                 <div className="flex justify-between items-center mt-4">
                   <p className="text-green-500 font-bold">Donation Post</p>
                   <button
-                    onClick={() => handleDonateClick(post)}
+                    onClick={() => handleDonateClick(posts, index)}
                     className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-200"
                   >
                     Donate
