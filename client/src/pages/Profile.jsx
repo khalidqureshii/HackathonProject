@@ -159,7 +159,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto bg-gray-100">
+    <div className="p-6 max-w-4xl mx-auto bg-gray-100 mt-8 rounded-lg shadow-md">
       {loading ? (
         <Loader />
       ) : (
@@ -194,38 +194,22 @@ const Profile = () => {
           <div className="mb-8">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-                Achievements
-              </h2>
-              <a onClick={() => console.log("Add Achievement Clicked")}>
-                <FaPlus
-                  className="hover:bg-gray-200 rounded-full p-3"
-                  size={40}
-                />
-              </a>
-            </div>
-            <ul className="space-y-2">
-              {achievements.map((achievement, index) => (
-                <li key={index} className="p-4 bg-white rounded shadow-sm">
-                  {achievement}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="mb-8">
-            <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-semibold mb-4 text-gray-800">
                 Education
               </h2>
-              <a onClick={() => setEduOpen(true)}>
+              {/* <a onClick={() => setEduOpen(true)}>
                 <FaPlus
                   className="hover:bg-gray-200 rounded-full p-3"
                   size={40}
                 />
+              </a> */}
+              <a onClick={() => setEduOpen(true)}>
+                <div className="flex items-center justify-center bg-blue-400 hover:bg-blue-500 rounded-full w-9 h-9 transition duration-200">
+                  <FaPlus className="text-white" size={24} />
+                </div>
               </a>
             </div>
             {isEduOpen && (
-              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 ">
                 <AddEducationPage
                   setEducation={setEducation}
                   education={education}
@@ -233,9 +217,11 @@ const Profile = () => {
                 />
               </div>
             )}
-            <ul className="space-y-2">
+            <ul className="space-y-2 order border-gray-300 bg-gray-100 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
               {education.length === 0 ? (
-                <h2>No Education Records</h2>
+                <h2 className="pl-3 text-gray-400 h-10 flex items-center">
+                  No Education Records
+                </h2>
               ) : (
                 education.map((edu, index) => (
                   <li
@@ -273,7 +259,7 @@ const Profile = () => {
               <h2 className="text-2xl font-semibold mb-4 text-gray-800">
                 Experience
               </h2>
-              <a
+              {/* <a
                 onClick={() => {
                   setExpOpen(true);
                 }}
@@ -282,6 +268,11 @@ const Profile = () => {
                   className="hover:bg-gray-200 rounded-full p-3"
                   size={40}
                 />
+              </a> */}
+              <a onClick={() => setExpOpen(true)}>
+                <div className="flex items-center justify-center bg-blue-400 hover:bg-blue-500 rounded-full w-9 h-9 transition duration-200">
+                  <FaPlus className="text-white" size={24} />
+                </div>
               </a>
               {isExpOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -293,8 +284,13 @@ const Profile = () => {
                 </div>
               )}
             </div>
-            <ul className="space-y-2">
-              {experience &&
+            <ul className="space-y-2 order border-gray-300 bg-gray-100 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+              {experience.length === 0 ? (
+                <h2 className="pl-3 text-gray-400 h-10 flex items-center">
+                  No Experience Records
+                </h2>
+              ) : (
+                experience &&
                 experience.map((exp, index) => (
                   <li
                     key={index}
@@ -325,7 +321,8 @@ const Profile = () => {
                       </span>
                     </div>
                   </li>
-                ))}
+                ))
+              )}
             </ul>
           </div>
         </>

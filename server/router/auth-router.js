@@ -16,7 +16,6 @@ router
   .post(upload.single("profileImage"), authControllers.register);
 router.route("/");
 router.route("/user").get(authMiddleware, authControllers.user);
-router.route("/getProfiles").get(authControllers.getProfiles);
 
 export default router;
 

@@ -11,3 +11,8 @@
     height: auto; 
   }
   
+  .bg-custom {
+    background-image: url('src/images/back.png'); /* Change to your image URL */
+    background-size: cover;
+    background-position: center;
+  }

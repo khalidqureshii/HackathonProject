@@ -12,6 +12,8 @@ import Connect from "./pages/Connect";
 import Profile from "./pages/Profile";
 import RegisterNew from "./pages/RegisterNew";
 import CompleteProfile from "./pages/CompleteProfile";
+import ProfilePage from "./components/cards/ProfilePage";
+import DonationPage from "./pages/DonationPage";
 
 function App() {
   return (
@@ -106,6 +108,25 @@ function App() {
               <>
                 <Header />
                 <Connect />
+              </>
+            }
+          />
+          <Route
+            path="/userprofile/:id"
+            element={
+              <>
+                <Header />
+                <ProfilePage />
+              </>
+            }
+          />
+
+          <Route
+            path="/donation"
+            element={
+              <>
+                <Header />
+                <DonationPage />
               </>
             }
           />

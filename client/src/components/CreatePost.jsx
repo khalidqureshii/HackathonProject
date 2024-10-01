@@ -1,9 +1,14 @@
+
 import React, { useState } from "react";
 import InputField from "./InputField.jsx";
 import TextAreaField from "./TextAreaField.jsx";
 import FileInputField from "./FileInputField.jsx";
+import { useNavigate } from "react-router-dom";
+import '../App.css';
+
 
 const CreatePost = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -55,6 +60,7 @@ const CreatePost = () => {
       if (response.ok) {
         console.log(result);
         alert("Post submitted successfully!");
+        navigate("/"); // Navigate to homepage after successful submission
       } else {
         console.error("Error:", result);
         alert("Failed to submit the post");
@@ -66,7 +72,7 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 bg-custom">
       <div className="w-full max-w-lg bg-white p-8 rounded-lg shadow-md">
         <h1 className="text-3xl font-bold mb-6 text-center text-black">
           Create a New Post
@@ -107,7 +113,7 @@ const CreatePost = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full focus:outline-none focus:ring focus:ring-blue-300"
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
             >
               Submit Post
             </button>
@@ -119,5 +125,4 @@ const CreatePost = () => {
 };
 
 export default CreatePost;
-
 
