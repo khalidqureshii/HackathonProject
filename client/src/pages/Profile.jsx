@@ -17,10 +17,6 @@ const Profile = () => {
   const [experience, setExperience] = useState([]);
   const [isEduOpen, setEduOpen] = useState(false);
   const [isExpOpen, setExpOpen] = useState(false);
-  const [achievements, setAchievements] = useState([
-    "Achievement 1",
-    "Achievement 2",
-  ]);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -167,6 +163,11 @@ const Profile = () => {
           <div className="flex items-center space-x-4 mb-8">
             {console.log(user)}
             <img
+          src="pfp.png"
+          alt="Profile"
+          className="w-32 h-32 rounded-full object-cover border-4 border-white"
+        />
+            {/* <img
               // src={user.profileImage || "https://via.placeholder.com/150"}
               // src={
               //   user.profileImageUrl
@@ -180,7 +181,7 @@ const Profile = () => {
               }
               alt="Profile Icon"
               className="w-32 h-32 rounded-full object-cover border-4 border-white"
-            />
+            /> */}
             <div>
               <h1 className="text-3xl font-bold text-gray-800">
                 {user.username || "User Name"}

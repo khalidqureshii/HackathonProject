@@ -20,7 +20,7 @@ const ProfileMenu = () => {
       {/* Profile Picture */}
       <button onClick={toggleProfileCard}>
         <img
-          src="src/images/Aishani_photo.jpeg"
+          src="pfp.png"
           alt="Profile"
           className="w-12 h-12 rounded-full border-2 border-white shadow-md hover:shadow-lg transition duration-200 ml-5"
         />
