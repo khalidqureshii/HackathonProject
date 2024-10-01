@@ -124,20 +124,16 @@ const Home = () => {
   }, []);
 
   const handleDonateClick = (post, index) => {
-    // alert(`Donating for post: ${post.title}`);
-    // console.log(post[index].title);
     navigate("/donation", {state: {title:post[index].title}});
   };
 
   const handleSearch = (e) => {
-    e.preventDefault(); // Prevent the default form submission
-    // You can implement the search functionality here
+    e.preventDefault(); 
     alert(`Searching for: ${searchTerm}`);
   };
 
   const handleCreatePostClick = () => {
     alert("Redirecting to create a new post...");
-    // You can add logic to navigate to the create post page here
   };
 
   if (loading) {
@@ -162,14 +158,6 @@ const Home = () => {
           {posts.map((post, index) => (
             <div key={post._id} className="bg-white p-8 rounded-lg shadow-lg w-[55%] mb-3 transition-transform transform hover:scale-105">
               {/* User Information */}
-              <div className="flex items-center mb-4">
-                <img
-                  src="src/images/Aishani_photo.jpeg" // Ensure this property exists in your post data
-                  alt={`${post.username}'s profile`}
-                  className="w-10 h-10 rounded-full mr-3" // Styling for profile picture
-                />
-                <a href = "/homepage" className="text-gray-600 text-lg font-semibold">aishanichauhan23</a>
-              </div>
               
               <h2 className="text-2xl font-semibold mb-4 text-gray-800">{post.title}</h2>
               <p className="text-gray-700 mb-4">{post.description}</p>
