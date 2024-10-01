@@ -1,5 +1,8 @@
 import express from "express";
 import User from "../models/user-model.js";
+import multer from "multer";
+
+const upload = multer({ dest: "uploads/" });
 
 const home = async (req, res) => {
   try {
@@ -53,6 +56,62 @@ const login = async (req, res) => {
   }
 };
 
+// const register = async (req, res) => {
+//   try {
+//     const {
+//       username,
+//       phone,
+//       email,
+//       password,
+//       industry,
+//       location,
+//       interests,
+//       userType,
+//       bio,
+//     } = req.body;
+
+//     const profileImage = req.file;
+
+//     console.log("Form Data:", req.body);
+//     console.log("Profile Image:", profileImage);
+
+//     const userExists = await User.findOne({ username: username });
+//     if (userExists) {
+//       return res.status(400).json({ msg: "User Already Exists" });
+//     }
+//     const newUser = await User.create({
+//       username,
+//       phone,
+//       email,
+//       password,
+//       industry,
+//       location,
+//       interests,
+//       userType,
+//       bio,
+//       profileImageUrl: profileImage ? profileImage.path : null,
+//     });
+//     console.log("New User Data (Before Save):", newUser);
+//     const saved = await newUser.save();
+//     console.log("After saving", saved);
+
+//     res.status(200).json({
+//       msg: "Registration Successful",
+//       token: await newUser.generateToken(),
+//       userId: newUser._id.toString(),
+//     });
+//   } catch (err) {
+//     const status = 404;
+//     const message = "User Already Exists";
+//     const extraDetails = "";
+//     const errorDetails = {
+//       message,
+//       status,
+//       extraDetails,
+//     };
+//     console.log(errorDetails);
+//   }
+// };
 const register = async (req, res) => {
   try {
     const {
@@ -66,38 +125,45 @@ const register = async (req, res) => {
       userType,
       bio,
     } = req.body;
-    const userExists = await User.findOne({ username: username });
+
+    const profileImage = req.file; // This handles the uploaded file
+
+    // Log incoming data
+    console.log("Form Data:", req.body);
+    console.log("Profile Image:", profileImage);
+
+    const userExists = await User.findOne({ username });
     if (userExists) {
       return res.status(400).json({ msg: "User Already Exists" });
     }
-    const newUser = await User.create({
+
+    const newUser = new User({
       username,
       phone,
       email,
       password,
       industry,
       location,
-      interests,
+      interests, // Ensure this is correctly sent
       userType,
-      bio
+      bio,
+      profileImageUrl: profileImage ? profileImage.path : null,
     });
-    res
-      .status(200)
-      .json({
-        msg: "Registration Successful",
-        token: await newUser.generateToken(),
-        userId: newUser._id.toString(),
-      });
+
+    // Save the user and generate token
+    const savedUser = await newUser.save();
+    const token = await savedUser.generateToken();
+
+    res.status(200).json({
+      msg: "Registration Successful",
+      token,
+      userId: savedUser._id.toString(),
+    });
   } catch (err) {
-    const status = 404;
-    const message = "User Already Exists";
-    const extraDetails = "";
-    const errorDetails = {
-      message,
-      status,
-      extraDetails,
-    };
-    console.log(errorDetails);
+    console.error("Registration Error:", err); // Log the error for debugging
+    res
+      .status(500)
+      .json({ msg: "Error during registration", error: err.message });
   }
 };
 
@@ -118,15 +184,20 @@ const user = async (req, res) => {
   }
 };
 
-const getProfiles = async(req, res) => {
+const getProfiles = async (req, res) => {
   try {
-      const profiles = await User.find().select({location:1, bio:1, username:1, industry:1, userType: 1})
-      res.status(200).json({msg: "Successful", allProfiles: profiles});
+    const profiles = await User.find().select({
+      location: 1,
+      bio: 1,
+      username: 1,
+      industry: 1,
+      userType: 1,
+    });
+    res.status(200).json({ msg: "Successful", allProfiles: profiles });
+  } catch (err) {
+    console.log("Couldn't get shit");
+    return res.status(404).message("Not found");
   }
-  catch (err) {
-      console.log("Couldn't get shit");
-      return res.status(404).message("Not found");
-  }
-}
+};
 
-export { login, register, home, user, getProfiles};
+export { login, register, home, user, getProfiles };

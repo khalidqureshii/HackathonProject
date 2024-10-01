@@ -21,13 +21,14 @@ const Profile = () => {
     "Achievement 1",
     "Achievement 2",
   ]);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     if (!isLoggedIn) {
       navigate("/login");
     } else {
-      fetchProfileData(); 
+      fetchProfileData();
     }
   }, [isLoggedIn]);
 
@@ -47,13 +48,60 @@ const Profile = () => {
         throw new Error(data.message || "Failed to fetch user data");
       }
       console.log(data);
+      setUser({
+        username: data.msg.username,
+        profileImage: data.msg.profileImage,
+      });
       setEducation(data.msg.education);
       setExperience(data.msg.experience);
     } catch (error) {
       console.error("Error fetching profile data:", error);
-      alert("Error fetching data: " + error.message); 
+      alert("Error fetching data: " + error.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleImageChange = (e) => {
+    setSelectedImage(e.target.files[0]); // Store the selected image in state
+  };
+
+  // Handle image upload
+  const handleImageUpload = async () => {
+    if (!selectedImage) {
+      alert("Please select an image first.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("profileImage", selectedImage); // Send selected image to the server
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/profile/uploadProfileImage",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`, // Ensure the token is sent for authentication
+          },
+          body: formData, // Send the FormData containing the image
+        }
+      );
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("Profile image updated successfully!");
+        setUser((prevUser) => ({
+          ...prevUser,
+          profileImage: result.profileImageUrl, // Update the profile image URL in state
+        }));
+      } else {
+        alert("Error uploading profile image: " + result.message);
+      }
+    } catch (error) {
+      console.error("Error uploading profile image:", error);
+      alert("Failed to upload profile image");
     }
   };
 
@@ -84,7 +132,7 @@ const Profile = () => {
   };
 
   const deleteExperience = async (index) => {
-    const expId = experience[index]._id; 
+    const expId = experience[index]._id;
     try {
       const response = await fetch(
         `http://localhost:5000/api/profile/experience/delete/${index}`,
@@ -117,13 +165,26 @@ const Profile = () => {
       ) : (
         <>
           <div className="flex items-center space-x-4 mb-8">
+            {console.log(user)}
             <img
-              src="https://via.placeholder.com/150"
+              // src={user.profileImage || "https://via.placeholder.com/150"}
+              // src={
+              //   user.profileImageUrl
+              //     ? `http://localhost:5000${user.profileImageUrl}`
+              //     : "https://via.placeholder.com/150"
+              // }
+              src={
+                user?.profileImageUrl
+                  ? `http://localhost:5000/${user.profileImageUrl}` // Dynamically load from server
+                  : "https://via.placeholder.com/150" // Fallback image
+              }
               alt="Profile Icon"
               className="w-32 h-32 rounded-full object-cover border-4 border-white"
             />
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">John Doe</h1>
+              <h1 className="text-3xl font-bold text-gray-800">
+                {user.username || "User Name"}
+              </h1>
               <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm">
                 Student
               </span>

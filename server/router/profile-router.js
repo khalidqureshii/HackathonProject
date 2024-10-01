@@ -5,7 +5,21 @@ import {
   addExperience,
   deleteEducation,
   deleteExperience,
+  fetchUserProfile,
+  updateProfileImage,
 } from "../controller/profile-controller.js";
+import multer from "multer";
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/profileImages");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
+
+const upload = multer({ storage });
 
 const profileRouter = express.Router();
 
@@ -19,4 +33,11 @@ profileRouter
   .route("/experience/delete/:index")
   .delete(authMiddleware, deleteExperience);
 
+profileRouter.post(
+  "/uploadProfileImage",
+  upload.single("profileImage"),
+  updateProfileImage
+);
+
+profileRouter.route("/user").get(authMiddleware, fetchUserProfile);
 export default profileRouter;

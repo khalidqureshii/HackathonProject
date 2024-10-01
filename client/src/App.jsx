@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
+// import Register from "./pages/Register";
 import Logout from "./pages/Logout";
 import Home from "./pages/Home";
 import HomePage from "./pages/HomePage";
@@ -10,6 +10,8 @@ import Header from "./components/Header";
 import DummyHeader from "./components/DummyHeader";
 import Connect from "./pages/Connect";
 import Profile from "./pages/Profile";
+import RegisterNew from "./pages/RegisterNew";
+import CompleteProfile from "./pages/CompleteProfile";
 
 function App() {
   return (
@@ -43,12 +45,30 @@ function App() {
               </>
             }
           />
-          <Route
+          {/* <Route
             path="/register"
             element={
               <>
                 <DummyHeader />
                 <Register />
+              </>
+            }
+          /> */}
+          <Route
+            path="/register"
+            element={
+              <>
+                <DummyHeader />
+                <RegisterNew />
+              </>
+            }
+          />
+          <Route
+            path="/completeprofile"
+            element={
+              <>
+                <DummyHeader />
+                <CompleteProfile />
               </>
             }
           />

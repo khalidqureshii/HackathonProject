@@ -100,4 +100,66 @@ const addExperience = async (req, res) => {
   }
 };
 
-export { addEducation, addExperience, deleteEducation, deleteExperience };
+const fetchUserProfile = async (req, res) => {
+  try {
+    const userData = req.user;
+    const user = await User.findById(userData._id).select(
+      "username profileImageUrl education experience"
+    );
+    console.log(profileImageUrl);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    // const profileImage = req.file ? req.file.path : null;
+    return res.json({
+      msg: {
+        username: user.username,
+        profileImageUrl: user.profileImageUrl,
+        education: user.education,
+        experience: user.experience,
+      },
+    });
+  } catch (error) {
+    console.log("Error fetching user profile:", error);
+    return res.status(500).json({ error: "Error fetching user profile" });
+  }
+};
+
+//updateProfileImage
+
+const updateProfileImage = async (req, res) => {
+  try {
+    const userId = req.user._id; // Assuming you have user authentication in place
+
+    // Check if the image file is available
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    const profileImageUrl = req.file.path; // The path where multer stored the image
+
+    // Update the user profile with the new image URL
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { profileImageUrl }, // Update the profileImageUrl field
+      { new: true } // Return the updated user document
+    );
+
+    res.status(200).json({
+      message: "Profile image updated successfully",
+      profileImageUrl: updatedUser.profileImageUrl,
+    });
+  } catch (error) {
+    console.error("Error updating profile image:", error);
+    res.status(500).json({ message: "Error updating profile image", error });
+  }
+};
+
+export {
+  addEducation,
+  addExperience,
+  deleteEducation,
+  deleteExperience,
+  fetchUserProfile,
+  updateProfileImage,
+};
