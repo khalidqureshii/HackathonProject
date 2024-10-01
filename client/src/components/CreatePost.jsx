@@ -1,15 +1,16 @@
-
 import React, { useState } from "react";
 import InputField from "./InputField.jsx";
 import TextAreaField from "./TextAreaField.jsx";
 import FileInputField from "./FileInputField.jsx";
 import { useNavigate } from "react-router-dom";
-import '../App.css';
-
+import "../App.css";
+import useAuth from "../store/Auth.jsx";
 
 const CreatePost = () => {
+  const [user, setUser] = useState(localStorage.getItem("user"));
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    postedBy: "",
     title: "",
     description: "",
     image: null,
@@ -40,19 +41,20 @@ const CreatePost = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("User->", user);
     const postData = new FormData();
+    postData.append("postedBy", user);
     postData.append("title", formData.title);
     postData.append("description", formData.description);
     postData.append("isDonation", formData.isDonation);
     if (formData.image) {
-      postData.append("image", formData.image); 
+      postData.append("image", formData.image);
     }
 
     try {
       const response = await fetch("http://localhost:5000/api/posts/create", {
         method: "POST",
-        body: postData, 
+        body: postData,
       });
 
       const result = await response.json();
@@ -125,4 +127,3 @@ const CreatePost = () => {
 };
 
 export default CreatePost;
-

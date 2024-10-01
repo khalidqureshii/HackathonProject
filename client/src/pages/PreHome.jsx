@@ -25,7 +25,8 @@ function PreHome() {
 
     return (
         <>
-          <div className="flex flex-col justify-center items-center w-full h-90vh text-center">
+          <h1></h1>
+          {/* <div className="flex flex-col justify-center items-center w-full h-90vh text-center">
             <h1 className="text-5xl">
               Join Us in This Amazing Journey Towards Better Mental Health
             </h1>
@@ -33,7 +34,7 @@ function PreHome() {
               {loginButton}
               {registerButton}
             </div>
-          </div>
+          </div> */}
         </>
     );
 }

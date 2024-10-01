@@ -1,10 +1,10 @@
 import Post from "../models/post-model.js";
 export const createPost = async (req, res) => {
   try {
-    console.log(req.body);
-    const { title, description, isDonation } = req.body;
+    const { postedBy, title, description, isDonation } = req.body;
     const imageUrl = req.file ? req.file.path : null;
     const newPost = new Post({
+      postedBy,
       title,
       description,
       imageUrl,

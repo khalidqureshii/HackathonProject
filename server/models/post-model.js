@@ -20,6 +20,9 @@ const postSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  postedBy: {
+    type: String,
+  },
 });
 
 const Post = mongoose.model("Post", postSchema);

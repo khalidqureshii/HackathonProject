@@ -158,7 +158,8 @@ const Home = () => {
           {posts.map((post, index) => (
             <div key={post._id} className="bg-white p-8 rounded-lg shadow-lg w-[55%] mb-3 transition-transform transform hover:scale-105">
               {/* User Information */}
-              
+              {/* {console.log(post.postedBy)} */}
+              <h2>Posted by: {post.postedBy}</h2>
               <h2 className="text-2xl font-semibold mb-4 text-gray-800">{post.title}</h2>
               <p className="text-gray-700 mb-4">{post.description}</p>
               {post.imageUrl && (

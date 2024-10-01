@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
 
   const storeTokenInLS = (serverToken) => {
     setToken(serverToken);
+    userAuthentication();
     return localStorage.setItem("hackathon-token", serverToken);
   };
 
@@ -20,6 +21,7 @@ export const AuthProvider = ({ children }) => {
   const LogoutUser = () => {
     console.log("Logged Out");
     setToken("");
+
     return localStorage.removeItem("hackathon-token");
   };
 
@@ -29,7 +31,7 @@ export const AuthProvider = ({ children }) => {
       const response = await fetch(LINK + "api/auth/user", {
         method: "GET",
         headers: {
-          Authorization: `${token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
       setLoading(false);
@@ -37,6 +39,7 @@ export const AuthProvider = ({ children }) => {
         const data = await response.json();
         const userData = data.msg;
         setUser(userData);
+        return localStorage.setItem("user", userData.username);
       }
     } catch (err) {
       console.log("Error Fetching User Data");
@@ -50,7 +53,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, token, storeTokenInLS, LogoutUser, user}}
+      value={{ isLoggedIn, token, storeTokenInLS, LogoutUser, user }}
     >
       {isLoading ? (
         <>

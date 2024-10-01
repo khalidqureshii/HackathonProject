@@ -22,6 +22,7 @@ const ProfileMenu = () => {
         <img
           src="pfp.png"
           alt="Profile"
+          width={50}
           className="w-12 h-12 rounded-full border-2 border-white shadow-md hover:shadow-lg transition duration-200 ml-5"
         />
       </button>

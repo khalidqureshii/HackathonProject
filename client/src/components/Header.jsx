@@ -22,12 +22,38 @@ const Header = () => {
   return (
     <header className="relative flex flex-row justify-between items-center bg-gradient-to-r from-blue-300 to-blue-500 py-4 shadow-lg">
       {/* Logo/Title (Aligned to the left) */}
-      <button onClick={() => navigate("/")}>
-        <h1 className="text-white text-2xl ml-5 font-cambria font-bold md:text-3xl md:ml-7">ConnectUS</h1>
+      <button className="flex items-center ml-5 md:ml-7">
+        <img
+          src="chain_15771971.png.jpg" // Replace with the actual path to your PNG
+          alt="Logo"
+          className="w-9 h-9 mr-3 shadow-xl rounded-full" // Adjust size and margin as needed
+        />
+        <h1 className="text-white text-2xl font-cambria font-bold md:text-3xl">ConnectUS</h1>
       </button>
 
       {/* Icons Section (Aligned to the right) */}
       <div className="flex items-center space-x-4 mr-5 md:mr-7">
+
+      <button
+          onClick={() => navigate("/connect")}
+          className="text-white text-xl hover:text-gray-200 transition duration-200"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-9 h-9 text-white hover:text-gray-200 transition duration-200"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 4.5v15m7.5-7.5h-15"
+            />
+          </svg>
+        </button>
+
         {/* Home Button (Left of the bell icon) */}
         <button
           onClick={() => navigate("/home")}
