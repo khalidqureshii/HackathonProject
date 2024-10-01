@@ -124,7 +124,8 @@ const Home = () => {
   }, []);
 
   const handleDonateClick = (post) => {
-    alert(`Donating for post: ${post.title}`);
+    // alert(`Donating for post: ${post.title}`);
+    navigate("/donation");
   };
 
   const handleSearch = (e) => {

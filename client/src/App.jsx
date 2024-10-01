@@ -11,6 +11,7 @@ import DummyHeader from "./components/DummyHeader";
 import Connect from "./pages/Connect";
 import Profile from "./pages/Profile";
 import ProfilePage from "./components/cards/ProfilePage";
+import DonationPage from "./pages/DonationPage";
 
 function App() {
   return (
@@ -94,6 +95,16 @@ function App() {
                 <Header />
                 <ProfilePage />
               </>} />
+
+              <Route
+            path="/donation"
+            element={
+              <>
+                <Header />
+                <DonationPage />
+              </>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>
